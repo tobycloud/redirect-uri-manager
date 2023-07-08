@@ -17,19 +17,13 @@ with open("routes.json", "r") as file:
 for route in routes:
 
     async def func(request: Request):
-        return RedirectResponse(
-            url=routes[route]
-            + (
-                f"?code={request.query_params['code']}"
-                if "code" in request.query_params
-                else ""
-            )
-            + (
-                f"?state={request.query_params['state']}"
-                if "state" in request.query_params
-                else ""
-            )
-        )
+        response_url = f"{routes[route]}?"
+        if "code" in request.query_params:
+            response_url += f"code={request.query_params['code']}&"
+        if "state" in request.query_params:
+            response_url += f"state={request.query_params['state']}&"
+
+        return RedirectResponse(url=response_url)
 
     app.get(route)(func)
 
