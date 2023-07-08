@@ -1,0 +1,4 @@
+{
+    "/pocketbase": "http://localhost:8080/pocketbase/oauth2/callback",
+    "/flutter": "http://localhost:8080/dashboard/oauth2/redirect.html"
+}
