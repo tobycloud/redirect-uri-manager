@@ -18,10 +18,8 @@ for route in routes:
 
     async def func(request: Request):
         response_url = f"{routes[route]}?"
-        if "code" in request.query_params:
-            response_url += f"code={request.query_params['code']}&"
-        if "state" in request.query_params:
-            response_url += f"state={request.query_params['state']}&"
+        for param in request.query_params:
+            response_url += f"{param}={request.query_params[param]}&"
 
         return RedirectResponse(url=response_url)
 
