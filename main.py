@@ -24,6 +24,11 @@ for route in routes:
                 if "code" in request.query_params
                 else ""
             )
+            + (
+                f"?state={request.query_params['state']}"
+                if "state" in request.query_params
+                else ""
+            )
         )
 
     app.get(route)(func)
